@@ -1,0 +1,33 @@
+{
+    "name": "invis1ble/messenger",
+    "type": "library",
+    "description": "Bus and Message Interfaces and Implementations.",
+    "keywords": [
+        "event",
+        "command",
+        "query",
+        "messenger",
+        "message-bus",
+        "event-bus",
+        "command-bus",
+        "message-bus",
+        "query-bus"
+    ],
+    "require": {
+        "php": ">=8.1",
+        "symfony/messenger": "7.0.x-dev"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Invis1ble",
+            "email": "Invis1ble@users.noreply.github.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Invis1ble\\Messenger\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
