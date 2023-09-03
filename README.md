@@ -3,6 +3,31 @@ Messenger
 
 Bus and Message Interfaces and Implementations.
 
+Installation
+------------
+
+To install this package, you can use Composer:
+
+```bash
+composer require invis1ble/messenger
+```
+
+or just add it as a dependency in your `composer.json` file:
+
+```json
+
+{
+    "require": {
+        "invis1ble/messenger": "^1.0"
+    }
+}
+```
+
+After adding the above line, run the following command to install the package:
+
+```bash
+composer install
+```
 
 License
 -------
