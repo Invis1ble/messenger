@@ -6,5 +6,5 @@ namespace Invis1ble\Messenger\Query;
 
 interface QueryBusInterface
 {
-    public function ask(QueryInterface $query);
+    public function ask(QueryInterface $query): mixed;
 }
