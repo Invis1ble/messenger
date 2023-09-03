@@ -13,7 +13,7 @@ class QueryBus implements QueryBusInterface
     use HandleTrait;
     use MessageBusExceptionTrait;
 
-    public function __construct(private readonly MessageBusInterface $messageBus)
+    public function __construct(private MessageBusInterface $messageBus)
     {
     }
 
