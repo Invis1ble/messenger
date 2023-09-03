@@ -17,8 +17,8 @@ class QueryBus implements QueryBusInterface
     {
     }
 
-    public function ask(QueryInterface $query)
+    public function ask(QueryInterface $query): mixed
     {
-        $this->handle($query);
+        return $this->handle($query);
     }
 }
