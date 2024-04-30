@@ -15,7 +15,7 @@
     ],
     "require": {
         "php": ">=8.1",
-        "symfony/messenger": "^6.3"
+        "symfony/messenger": "^6.4|^7.0"
     },
     "license": "MIT",
     "authors": [
