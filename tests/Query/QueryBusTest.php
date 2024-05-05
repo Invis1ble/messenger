@@ -23,7 +23,7 @@ class QueryBusTest extends BusTestCase
         $this->assertSame($query, $askedQueries[0]['query']);
     }
 
-    protected function createQueryBus(iterable $handlers = []): TraceableQueryBus
+    private function createQueryBus(iterable $handlers = []): TraceableQueryBus
     {
         return new TraceableQueryBus(
             new QueryBus($this->createMessageBus($handlers)),

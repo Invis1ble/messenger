@@ -36,7 +36,7 @@ class EventBusTest extends BusTestCase
         $eventBus->dispatch($event);
     }
 
-    protected function createEventBus(iterable $handlers = []): TraceableEventBus
+    private function createEventBus(iterable $handlers = []): TraceableEventBus
     {
         return new TraceableEventBus(
             new EventBus($this->createMessageBus($handlers)),
