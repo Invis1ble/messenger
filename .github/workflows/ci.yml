@@ -13,21 +13,31 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: shivammathur/setup-php@v2
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Build Docker images
+        uses: docker/bake-action@v4
         with:
-          php-version: '8.2'
-      - uses: actions/checkout@v4
-      - name: Copy .env.test.local
-        run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
-      - name: Cache Composer packages
-        id: composer-cache
-        uses: actions/cache@v3
-        with:
-          path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
-      - name: Install Dependencies
-        run: composer install -vvv --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      - name: Execute tests via PHPUnit
-        run: vendor/bin/phpunit
+          pull: true
+          load: true
+          files: |
+            compose.yaml
+            compose.override.yaml
+          set: |
+            *.cache-from=type=gha,scope=${{github.ref}}
+            *.cache-from=type=gha,scope=refs/heads/main
+            *.cache-to=type=gha,scope=${{github.ref}},mode=max
+      -
+        name: Start services
+        run: docker compose up --wait --no-build
+      -
+        name: Install Dependencies
+        run: docker compose exec -T php composer install -vvv --no-ansi --no-interaction --no-progress
+      -
+        name: Execute tests via PHPUnit
+        run: docker compose exec -T php bin/phpunit

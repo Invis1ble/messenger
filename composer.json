@@ -1,7 +1,14 @@
 {
+    "version": "2.1.2",
     "name": "invis1ble/messenger",
     "type": "library",
     "description": "Bus and Message Interfaces and Implementations.",
+    "authors": [
+        {
+            "name": "Invis1ble",
+            "email": "Invis1ble@users.noreply.github.com"
+        }
+    ],
     "keywords": [
         "event",
         "command",
@@ -21,18 +28,12 @@
         "ext-mbstring": "*",
         "phpunit/phpunit": "^11.2@dev"
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Invis1ble",
-            "email": "Invis1ble@users.noreply.github.com"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Invis1ble\\Messenger\\": "src/",
             "Tests\\Invis1ble\\Messenger\\": "tests/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "license": "MIT"
 }
