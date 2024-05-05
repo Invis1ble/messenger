@@ -30,7 +30,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Invis1ble\\Messenger\\": "src/"
+            "Invis1ble\\Messenger\\": "src/",
+            "Tests\\Invis1ble\\Messenger\\": "tests/"
         }
     },
     "minimum-stability": "dev"
