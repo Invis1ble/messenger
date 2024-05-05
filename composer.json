@@ -14,8 +14,12 @@
         "cqrs"
     ],
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "symfony/messenger": "^6.4|^7.0"
+    },
+    "require-dev": {
+        "ext-mbstring": "*",
+        "phpunit/phpunit": "^11.2@dev"
     },
     "license": "MIT",
     "authors": [
@@ -26,7 +30,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Invis1ble\\Messenger\\": "src/"
+            "Invis1ble\\Messenger\\": "src/",
+            "Tests\\Invis1ble\\Messenger\\": "tests/"
         }
     },
     "minimum-stability": "dev"
