@@ -14,7 +14,7 @@
         "cqrs"
     ],
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "symfony/messenger": "^6.4|^7.0"
     },
     "require-dev": {
