@@ -36,7 +36,7 @@ class CommandBusTest extends BusTestCase
         $commandBus->dispatch($command);
     }
 
-    protected function createCommandBus(iterable $handlers = []): TraceableCommandBus
+    private function createCommandBus(iterable $handlers = []): TraceableCommandBus
     {
         return new TraceableCommandBus(
             new CommandBus($this->createMessageBus($handlers)),
