@@ -2,6 +2,8 @@ Messenger
 ==================
 
 ![CI Status](https://github.com/Invis1ble/messenger/actions/workflows/ci.yml/badge.svg?event=push)
+[![Packagist](https://img.shields.io/packagist/v/Invis1ble/messenger.svg)](https://packagist.org/packages/Invis1ble/messenger)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 Bus and Message Interfaces and Implementations.
 
