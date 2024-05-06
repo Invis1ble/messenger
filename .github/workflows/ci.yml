@@ -40,6 +40,8 @@ jobs:
       -
         name: Execute tests via PHPUnit
         run: docker compose exec -T php vendor/bin/phpunit --coverage-clover var/log/coverage-clover.xml
+        env:
+          XDEBUG_MODE: coverage
       -
         name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
