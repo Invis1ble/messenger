@@ -73,6 +73,13 @@ To run Unit tests during development
 docker compose exec php vendor/bin/phpunit
 ```
 
+To run with coverage
+
+```sh
+XDEBUG_MODE=coverage docker compose up -d --wait
+docker compose exec php vendor/bin/phpunit --coverage-clover var/log/coverage-clover.xml
+```
+
 
 License
 -------
