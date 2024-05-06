@@ -37,7 +37,7 @@ jobs:
         run: docker compose exec -T php composer install -vvv --no-ansi --no-interaction
       -
         name: Execute tests via PHPUnit
-        run: docker compose exec -T php bin/phpunit
+        run: docker compose exec -T php vendor/bin/phpunit
   lint:
     name: Docker Lint
     runs-on: ubuntu-latest

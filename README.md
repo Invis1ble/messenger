@@ -50,7 +50,7 @@ Testing
 To run Unit tests during development
 
 ```sh
-docker compose exec php bin/phpunit
+docker compose exec php vendor/bin/phpunit
 ```
 
 
