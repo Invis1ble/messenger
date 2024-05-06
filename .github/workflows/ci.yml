@@ -1,10 +1,6 @@
 name: CI
 
-on:
-  push:
-    branches: [ "develop", "master" ]
-  pull_request:
-    branches: [ "develop" ]
+on: [push, pull_request]
 
 jobs:
   tests:
@@ -31,7 +27,7 @@ jobs:
             *.cache-to=type=gha,scope=${{github.ref}},mode=max
       -
         name: Start services
-        run: docker compose up --wait --no-build
+        run: XDEBUG_MODE=coverage docker compose up --wait --no-build
       -
         name: Install Dependencies
         run: docker compose exec -T php composer install -vvv --no-ansi --no-interaction
@@ -43,7 +39,12 @@ jobs:
         run: docker compose exec -T php bin/php-cs-fixer
       -
         name: Execute tests via PHPUnit
-        run: docker compose exec -T php vendor/bin/phpunit
+        run: docker compose exec -T php vendor/bin/phpunit --coverage-clover var/log/coverage-clover.xml
+      -
+        name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
   lint:
     name: Docker Lint
     runs-on: ubuntu-latest
