@@ -28,9 +28,13 @@ class CommandBusTest extends BusTestCase
         $exception = new \RuntimeException('Test exception');
 
         $command = $this->createMock(CommandInterface::class);
-        $commandBus = $this->createCommandBus([$command::class => [function () use ($exception): void {
-            throw $exception;
-        }]]);
+        $commandBus = $this->createCommandBus([
+            $command::class => [
+                function () use ($exception): void {
+                    throw $exception;
+                },
+            ],
+        ]);
 
         $this->expectExceptionObject($exception);
         $commandBus->dispatch($command);

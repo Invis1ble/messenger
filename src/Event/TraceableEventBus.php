@@ -17,9 +17,6 @@ class TraceableEventBus extends TraceableBus implements EventBusInterface
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function dispatch(EventInterface $event): void
     {
         $context = [

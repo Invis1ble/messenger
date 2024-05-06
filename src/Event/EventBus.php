@@ -16,9 +16,6 @@ class EventBus implements EventBusInterface
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function dispatch(EventInterface $event): void
     {
         try {

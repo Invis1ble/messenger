@@ -17,9 +17,6 @@ class TraceableCommandBus extends TraceableBus implements CommandBusInterface
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function dispatch(CommandInterface $command): void
     {
         $context = [
