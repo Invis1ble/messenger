@@ -2,6 +2,8 @@ Messenger
 ==================
 
 ![CI Status](https://github.com/Invis1ble/messenger/actions/workflows/ci.yml/badge.svg?event=push)
+[![Packagist](https://img.shields.io/packagist/v/Invis1ble/messenger.svg)](https://packagist.org/packages/Invis1ble/messenger)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 Bus and Message Interfaces and Implementations.
 
@@ -55,6 +57,12 @@ Run PHP_CodeSniffer checks:
 docker compose exec -it php bin/php_codesniffer
 ```
 
+Run PHP-CS-Fixer checks:
+
+```sh
+docker compose exec -it php bin/php-cs-fixer
+```
+
 
 Testing
 -------
@@ -63,6 +71,13 @@ To run Unit tests during development
 
 ```sh
 docker compose exec php vendor/bin/phpunit
+```
+
+To run with coverage
+
+```sh
+XDEBUG_MODE=coverage docker compose up -d --wait
+docker compose exec php vendor/bin/phpunit --coverage-clover var/log/coverage-clover.xml
 ```
 
 
