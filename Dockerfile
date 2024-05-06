@@ -5,7 +5,7 @@ ENV XDEBUG_MODE=off
 RUN apt-get update && apt-get install -y --no-install-recommends \
       git=1:2.39.2-1.1 \
       unzip=6.0-28 \
-	&& rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 RUN pecl install xdebug-3.3.2 \
     && docker-php-ext-enable xdebug
