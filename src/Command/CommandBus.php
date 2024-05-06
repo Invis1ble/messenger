@@ -16,9 +16,6 @@ class CommandBus implements CommandBusInterface
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function dispatch(CommandInterface $command): void
     {
         try {

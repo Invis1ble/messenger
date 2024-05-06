@@ -28,9 +28,13 @@ class EventBusTest extends BusTestCase
         $exception = new \RuntimeException('Test exception');
 
         $event = $this->createMock(EventInterface::class);
-        $eventBus = $this->createEventBus([$event::class => [function () use ($exception): void {
-            throw $exception;
-        }]]);
+        $eventBus = $this->createEventBus([
+            $event::class => [
+                function () use ($exception): void {
+                    throw $exception;
+                },
+            ],
+        ]);
 
         $this->expectExceptionObject($exception);
         $eventBus->dispatch($event);

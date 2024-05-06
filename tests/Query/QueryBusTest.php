@@ -14,7 +14,13 @@ class QueryBusTest extends BusTestCase
     public function testAsk(): void
     {
         $query = $this->createMock(QueryInterface::class);
-        $queryBus = $this->createQueryBus([$query::class => [function () {}]]);
+        $queryBus = $this->createQueryBus([
+            $query::class => [
+                function () {
+                    // do nothing
+                },
+            ],
+        ]);
 
         $queryBus->ask($query);
 
