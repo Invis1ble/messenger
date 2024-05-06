@@ -1,6 +1,8 @@
 Messenger
 ==================
 
+![CI Status](https://github.com/Invis1ble/messenger/actions/workflows/ci.yml/badge.svg?event=push)
+
 Bus and Message Interfaces and Implementations.
 
 - Command & Command Bus
