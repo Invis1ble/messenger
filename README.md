@@ -55,6 +55,12 @@ Run PHP_CodeSniffer checks:
 docker compose exec -it php bin/php_codesniffer
 ```
 
+Run PHP-CS-Fixer checks:
+
+```sh
+docker compose exec -it php bin/php-cs-fixer
+```
+
 
 Testing
 -------
