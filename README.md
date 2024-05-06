@@ -2,6 +2,7 @@ Messenger
 ==================
 
 ![CI Status](https://github.com/Invis1ble/messenger/actions/workflows/ci.yml/badge.svg?event=push)
+[![Code Coverage](https://codecov.io/gh/Invis1ble/messenger/graph/badge.svg?token=AQRIP417A4)](https://codecov.io/gh/Invis1ble/messenger)
 [![Packagist](https://img.shields.io/packagist/v/Invis1ble/messenger.svg)](https://packagist.org/packages/Invis1ble/messenger)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 

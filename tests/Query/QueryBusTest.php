@@ -29,6 +29,23 @@ class QueryBusTest extends BusTestCase
         $this->assertSame($query, $askedQueries[0]['query']);
     }
 
+    public function testAskThrowsException(): void
+    {
+        $exception = new \RuntimeException('Test exception');
+
+        $query = $this->createMock(QueryInterface::class);
+        $eventBus = $this->createQueryBus([
+            $query::class => [
+                function () use ($exception): void {
+                    throw $exception;
+                },
+            ],
+        ]);
+
+        $this->expectExceptionObject($exception);
+        $eventBus->ask($query);
+    }
+
     private function createQueryBus(iterable $handlers = []): TraceableQueryBus
     {
         return new TraceableQueryBus(
