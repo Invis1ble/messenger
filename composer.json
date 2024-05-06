@@ -1,5 +1,5 @@
 {
-    "version": "2.1.6",
+    "version": "2.1.7",
     "name": "invis1ble/messenger",
     "type": "library",
     "description": "Bus and Message Interfaces and Implementations.",
