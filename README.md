@@ -12,7 +12,7 @@ Installation
 
 To install this package, you can use Composer:
 
-```bash
+```sh
 composer require invis1ble/messenger
 ```
 
@@ -29,9 +29,30 @@ or just add it as a dependency in your `composer.json` file:
 
 After adding the above line, run the following command to install the package:
 
-```bash
+```sh
 composer install
 ```
+
+
+Development
+-----------
+
+1. If not already done, [install Docker Compose](https://docs.docker.com/compose/install/) (v2.10+)
+2. Run `docker compose build --no-cache` to build fresh images
+3. Run `docker compose up -d --wait` to start the Docker containers
+4. Run `docker compose exec php composer install` to install dependencies
+5. Run `docker compose down --remove-orphans` to stop the Docker containers.
+
+
+Testing
+-------
+
+To run Unit tests during development
+
+```sh
+docker compose exec php vendor/bin/phpunit
+```
+
 
 License
 -------
