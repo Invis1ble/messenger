@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Invis1ble\Messenger\Command;
+namespace Invis1ble\Messenger\Tests\Command;
 
 use Invis1ble\Messenger\Command\CommandBus;
 use Invis1ble\Messenger\Command\CommandInterface;
 use Invis1ble\Messenger\Command\TraceableCommandBus;
-use Tests\Invis1ble\Messenger\BusTestCase;
+use Invis1ble\Messenger\Tests\BusTestCase;
 
 class CommandBusTest extends BusTestCase
 {
