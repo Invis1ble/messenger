@@ -19,6 +19,7 @@ class TraceableBusTest extends TestCase
             'line' => 14,
         ], $caller);
     }
+
     public function testGetCallerWithExtraFunctionCallInBacktrace(): void
     {
         $bus = $this->createBus();
@@ -27,7 +28,7 @@ class TraceableBusTest extends TestCase
         $this->assertSame([
             'name' => 'TraceableBusTest.php',
             'file' => __FILE__,
-            'line' => 25,
+            'line' => 26,
         ], $caller);
     }
 
@@ -37,6 +38,9 @@ class TraceableBusTest extends TestCase
     }
 }
 
-function dispatch(TraceableTestBus $bus): array {
-    return $bus->dispatch();
+if (!function_exists(__NAMESPACE__ . '\dispatch')) {
+    function dispatch(TraceableTestBus $bus): array
+    {
+        return $bus->dispatch();
+    }
 }
