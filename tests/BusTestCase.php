@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Invis1ble\Messenger;
+namespace Invis1ble\Messenger\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Messenger\Handler\HandlersLocator;

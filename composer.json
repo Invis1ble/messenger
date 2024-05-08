@@ -32,8 +32,9 @@
     "autoload": {
         "psr-4": {
             "Invis1ble\\Messenger\\": "src/",
-            "Tests\\Invis1ble\\Messenger\\": "tests/"
-        }
+            "Invis1ble\\Messenger\\Tests\\": "tests/"
+        },
+        "exclude-from-classmap": ["/tests/"]
     },
     "minimum-stability": "dev",
     "license": "MIT"

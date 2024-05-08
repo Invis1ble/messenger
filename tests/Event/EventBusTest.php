@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Invis1ble\Messenger\Event;
+namespace Invis1ble\Messenger\Tests\Event;
 
 use Invis1ble\Messenger\Event\EventBus;
 use Invis1ble\Messenger\Event\EventInterface;
 use Invis1ble\Messenger\Event\TraceableEventBus;
-use Tests\Invis1ble\Messenger\BusTestCase;
+use Invis1ble\Messenger\Tests\BusTestCase;
 
 class EventBusTest extends BusTestCase
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Invis1ble\Messenger\Query;
+namespace Invis1ble\Messenger\Tests\Query;
 
 use Invis1ble\Messenger\Query\QueryBus;
 use Invis1ble\Messenger\Query\QueryInterface;
 use Invis1ble\Messenger\Query\TraceableQueryBus;
-use Tests\Invis1ble\Messenger\BusTestCase;
+use Invis1ble\Messenger\Tests\BusTestCase;
 
 class QueryBusTest extends BusTestCase
 {
