@@ -6,7 +6,7 @@ namespace Invis1ble\Messenger;
 
 abstract class TraceableBus
 {
-    protected function getCaller(string $busClass, string $busMethod): array
+    protected function getCaller(string $busClass, string $dispatchMethod): array
     {
         $trace = debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, 8);
 
@@ -15,7 +15,7 @@ abstract class TraceableBus
 
         for ($i = 2; $i < 8; ++$i) {
             if (isset($trace[$i]['class'], $trace[$i]['function'])
-                && $busMethod === $trace[$i]['function']
+                && $dispatchMethod === $trace[$i]['function']
                 && is_a($trace[$i]['class'], $busClass, true)
             ) {
                 $file = $trace[$i]['file'];
@@ -29,6 +29,7 @@ abstract class TraceableBus
                         break;
                     }
                 }
+
                 break;
             }
         }
