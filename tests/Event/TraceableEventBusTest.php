@@ -26,7 +26,9 @@ class TraceableEventBusTest extends BusTestCase
 
         try {
             $eventBus->dispatch($event);
-        } catch (\DomainException) {}
+        } catch (\DomainException) {
+            // do nothing
+        }
 
         $dispatchedEvents = $eventBus->getDispatchedEvents();
         $this->assertCount(1, $dispatchedEvents);
@@ -34,6 +36,5 @@ class TraceableEventBusTest extends BusTestCase
         $this->assertCount(1, $dispatchedEvents);
         $this->assertSame($event, $dispatchedEvents[0]['event']);
         $this->assertSame($exception, $dispatchedEvents[0]['exception']);
-
     }
 }

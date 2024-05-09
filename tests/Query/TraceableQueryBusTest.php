@@ -26,7 +26,9 @@ class TraceableQueryBusTest extends BusTestCase
 
         try {
             $queryBus->ask($query);
-        } catch (\DomainException) {}
+        } catch (\DomainException) {
+            // do nothing
+        }
 
         $dispatchedQueries = $queryBus->getAskedQueries();
         $this->assertCount(1, $dispatchedQueries);

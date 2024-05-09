@@ -26,7 +26,9 @@ class TraceableCommandBusTest extends BusTestCase
 
         try {
             $commandBus->dispatch($command);
-        } catch (\DomainException) {}
+        } catch (\DomainException) {
+            // do nothing
+        }
 
         $dispatchedCommands = $commandBus->getDispatchedCommands();
         $this->assertCount(1, $dispatchedCommands);

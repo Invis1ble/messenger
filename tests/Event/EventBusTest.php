@@ -39,7 +39,7 @@ class EventBusTest extends BusTestCase
                         throw $exception;
                     },
                 ],
-            ]
+            ],
         );
 
         $this->expectExceptionObject($exception);

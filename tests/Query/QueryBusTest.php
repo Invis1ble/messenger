@@ -45,7 +45,7 @@ class QueryBusTest extends BusTestCase
                         throw $exception;
                     },
                 ],
-            ]
+            ],
         );
 
         $this->expectExceptionObject($exception);
