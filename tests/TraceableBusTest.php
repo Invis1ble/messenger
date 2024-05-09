@@ -42,6 +42,8 @@ class TraceableBusTest extends TestCase
 /**
  * @internal
  */
+// phpcs:disable PSR1.Classes.ClassDeclaration.MultipleClasses
+// phpcs:disable Symfony.Classes.MultipleClassesOneFile
 final class TraceableTestBus extends TraceableBus
 {
     public function dispatch(): array
@@ -54,6 +56,8 @@ final class TraceableTestBus extends TraceableBus
         return $this->getCaller(self::class, 'dispatch');
     }
 }
+// phpcs:enable PSR1.Classes.ClassDeclaration.MultipleClassesOneFile
+// phpcs:enable Symfony.Classes.MultipleClassesOneFile
 
 if (!function_exists(__NAMESPACE__ . '\dispatch')) {
     /**
