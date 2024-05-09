@@ -6,5 +6,8 @@ namespace Invis1ble\Messenger\Query;
 
 interface QueryBusInterface
 {
+    /**
+     * @throws \Throwable
+     */
     public function ask(QueryInterface $query): mixed;
 }
