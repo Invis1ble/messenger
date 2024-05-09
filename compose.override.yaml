@@ -5,5 +5,5 @@ services:
       - .:/app
     environment:
       # See https://xdebug.org/docs/all_settings#mode
-      XDEBUG_MODE: coverage
+      XDEBUG_MODE: "${XDEBUG_MODE:-off}"
     tty: true
