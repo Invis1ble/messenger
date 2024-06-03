@@ -18,6 +18,7 @@
         <exclude name="Symfony.Commenting.FunctionComment.MissingParamTag" />
         <exclude name="Symfony.Commenting.FunctionComment.MissingReturn" />
         <exclude name="Symfony.Commenting.License" />
+        <exclude name="Symfony.Functions.Arguments.Invalid" />
         <exclude name="Symfony.NamingConventions.ValidClassName.InvalidAbstractName" />
     </rule>
 
