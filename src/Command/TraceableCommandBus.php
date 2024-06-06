@@ -9,7 +9,7 @@ use Invis1ble\Messenger\TraceableBus;
 class TraceableCommandBus extends TraceableBus implements CommandBusInterface
 {
     /**
-     * @var CommandInterface[]
+     * @var TracedCommand[]
      */
     private array $dispatchedCommands = [];
 
@@ -19,25 +19,20 @@ class TraceableCommandBus extends TraceableBus implements CommandBusInterface
 
     public function dispatch(CommandInterface $command): void
     {
-        $context = [
-            'command' => $command,
-            'caller' => $this->getCaller(CommandBusInterface::class, 'dispatch'),
-            'callTime' => microtime(true),
-        ];
+        $callTime = new \DateTimeImmutable();
+        $caller = $this->getCaller(CommandBusInterface::class, 'dispatch');
 
         try {
             $this->decoratedBus->dispatch($command);
         } catch (\Throwable $e) {
-            $context['exception'] = $e;
-
             throw $e;
         } finally {
-            $this->dispatchedCommands[] = $context;
+            $this->dispatchedCommands[] = new TracedCommand($command, $caller, $callTime, $e ?? null);
         }
     }
 
     /**
-     * @return CommandInterface[]
+     * @return TracedCommand[]
      */
     public function getDispatchedCommands(): array
     {

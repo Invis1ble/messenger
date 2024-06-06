@@ -9,7 +9,7 @@ use Invis1ble\Messenger\TraceableBus;
 class TraceableEventBus extends TraceableBus implements EventBusInterface
 {
     /**
-     * @var EventInterface[]
+     * @var TracedEvent[]
      */
     private array $dispatchedEvents = [];
 
@@ -19,25 +19,20 @@ class TraceableEventBus extends TraceableBus implements EventBusInterface
 
     public function dispatch(EventInterface $event): void
     {
-        $context = [
-            'event' => $event,
-            'caller' => $this->getCaller(EventBusInterface::class, 'dispatch'),
-            'callTime' => microtime(true),
-        ];
+        $callTime = new \DateTimeImmutable();
+        $caller = $this->getCaller(EventBusInterface::class, 'dispatch');
 
         try {
             $this->decoratedBus->dispatch($event);
         } catch (\Throwable $e) {
-            $context['exception'] = $e;
-
             throw $e;
         } finally {
-            $this->dispatchedEvents[] = $context;
+            $this->dispatchedEvents[] = new TracedEvent($event, $caller, $callTime, $e ?? null);
         }
     }
 
     /**
-     * @return EventInterface[]
+     * @return TracedEvent[]
      */
     public function getDispatchedEvents(): array
     {

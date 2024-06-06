@@ -34,7 +34,7 @@ class TraceableQueryBusTest extends BusTestCase
         $this->assertCount(1, $dispatchedQueries);
         $this->assertArrayHasKey(0, $dispatchedQueries);
         $this->assertCount(1, $dispatchedQueries);
-        $this->assertSame($query, $dispatchedQueries[0]['query']);
-        $this->assertSame($exception, $dispatchedQueries[0]['exception']);
+        $this->assertSame($query, $dispatchedQueries[0]->query);
+        $this->assertSame($exception, $dispatchedQueries[0]->exception);
     }
 }
