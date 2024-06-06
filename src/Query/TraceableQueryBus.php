@@ -9,7 +9,7 @@ use Invis1ble\Messenger\TraceableBus;
 class TraceableQueryBus extends TraceableBus implements QueryBusInterface
 {
     /**
-     * @var QueryInterface[]
+     * @var TracedQuery[]
      */
     private array $askedQueries = [];
 
@@ -22,25 +22,20 @@ class TraceableQueryBus extends TraceableBus implements QueryBusInterface
      */
     public function ask(QueryInterface $query): mixed
     {
-        $context = [
-            'query' => $query,
-            'caller' => $this->getCaller(QueryBusInterface::class, 'ask'),
-            'callTime' => microtime(true),
-        ];
+        $callTime = new \DateTimeImmutable();
+        $caller = $this->getCaller(QueryBusInterface::class, 'ask');
 
         try {
             return $this->decoratedBus->ask($query);
         } catch (\Throwable $e) {
-            $context['exception'] = $e;
-
             throw $e;
         } finally {
-            $this->askedQueries[] = $context;
+            $this->askedQueries[] = new TracedQuery($query, $caller, $callTime, $e ?? null);
         }
     }
 
     /**
-     * @return QueryInterface[]
+     * @return TracedQuery[]
      */
     public function getAskedQueries(): array
     {

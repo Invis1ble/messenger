@@ -33,8 +33,7 @@ class TraceableCommandBusTest extends BusTestCase
         $dispatchedCommands = $commandBus->getDispatchedCommands();
         $this->assertCount(1, $dispatchedCommands);
         $this->assertArrayHasKey(0, $dispatchedCommands);
-        $this->assertCount(1, $dispatchedCommands);
-        $this->assertSame($command, $dispatchedCommands[0]['command']);
-        $this->assertSame($exception, $dispatchedCommands[0]['exception']);
+        $this->assertSame($command, $dispatchedCommands[0]->command);
+        $this->assertSame($exception, $dispatchedCommands[0]->exception);
     }
 }

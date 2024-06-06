@@ -33,8 +33,7 @@ class TraceableEventBusTest extends BusTestCase
         $dispatchedEvents = $eventBus->getDispatchedEvents();
         $this->assertCount(1, $dispatchedEvents);
         $this->assertArrayHasKey(0, $dispatchedEvents);
-        $this->assertCount(1, $dispatchedEvents);
-        $this->assertSame($event, $dispatchedEvents[0]['event']);
-        $this->assertSame($exception, $dispatchedEvents[0]['exception']);
+        $this->assertSame($event, $dispatchedEvents[0]->event);
+        $this->assertSame($exception, $dispatchedEvents[0]->exception);
     }
 }
