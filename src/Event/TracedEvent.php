@@ -6,10 +6,10 @@ namespace Invis1ble\Messenger\Event;
 
 use Invis1ble\Messenger\AbstractTracedMessage;
 
-final readonly class TracedEvent extends AbstractTracedMessage
+final class TracedEvent extends AbstractTracedMessage
 {
     public function __construct(
-        public EventInterface $event,
+        public readonly EventInterface $event,
         array $caller,
         \DateTimeImmutable $callTime,
         ?\Throwable $exception = null,

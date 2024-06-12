@@ -4,12 +4,17 @@ declare(strict_types=1);
 
 namespace Invis1ble\Messenger;
 
-abstract readonly class AbstractTracedMessage
+abstract class AbstractTracedMessage
 {
     public function __construct(
-        public array $caller,
-        public \DateTimeImmutable $callTime,
+        public readonly array $caller,
+        public readonly \DateTimeImmutable $callTime,
         public ?\Throwable $exception = null,
     ) {
+    }
+
+    public function setException(\Throwable $exception): void
+    {
+        $this->exception = $exception;
     }
 }

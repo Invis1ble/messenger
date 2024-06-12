@@ -6,10 +6,10 @@ namespace Invis1ble\Messenger\Query;
 
 use Invis1ble\Messenger\AbstractTracedMessage;
 
-final readonly class TracedQuery extends AbstractTracedMessage
+final class TracedQuery extends AbstractTracedMessage
 {
     public function __construct(
-        public QueryInterface $query,
+        public readonly QueryInterface $query,
         array $caller,
         \DateTimeImmutable $callTime,
         ?\Throwable $exception = null,
