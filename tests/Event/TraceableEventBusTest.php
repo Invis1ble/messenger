@@ -26,14 +26,21 @@ class TraceableEventBusTest extends BusTestCase
 
         try {
             $eventBus->dispatch($event);
-        } catch (\DomainException) {
+        } catch (\DomainException $e) {
             // do nothing
         }
+
+        $this->assertTrue(isset($e));
+        $this->assertSame($exception::class, $e::class);
+        $this->assertSame($exception->getMessage(), $e->getMessage());
 
         $dispatchedEvents = $eventBus->getDispatchedEvents();
         $this->assertCount(1, $dispatchedEvents);
         $this->assertArrayHasKey(0, $dispatchedEvents);
-        $this->assertSame($event, $dispatchedEvents[0]->event);
-        $this->assertSame($exception, $dispatchedEvents[0]->exception);
+        $this->assertSame($event::class, $dispatchedEvents[0]->event::class);
+        $this->assertSame($exception::class, $dispatchedEvents[0]->exception::class);
+        $this->assertSame($exception->getMessage(), $dispatchedEvents[0]->exception->getMessage());
+        $this->assertSame($exception->getCode(), $dispatchedEvents[0]->exception->getCode());
+        $this->assertSame($exception->getTrace(), $dispatchedEvents[0]->exception->getTrace());
     }
 }

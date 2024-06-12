@@ -26,15 +26,21 @@ class TraceableQueryBusTest extends BusTestCase
 
         try {
             $queryBus->ask($query);
-        } catch (\DomainException) {
+        } catch (\DomainException $e) {
             // do nothing
         }
+
+        $this->assertTrue(isset($e));
+        $this->assertSame($exception::class, $e::class);
+        $this->assertSame($exception->getMessage(), $e->getMessage());
 
         $dispatchedQueries = $queryBus->getAskedQueries();
         $this->assertCount(1, $dispatchedQueries);
         $this->assertArrayHasKey(0, $dispatchedQueries);
-        $this->assertCount(1, $dispatchedQueries);
-        $this->assertSame($query, $dispatchedQueries[0]->query);
-        $this->assertSame($exception, $dispatchedQueries[0]->exception);
+        $this->assertSame($query::class, $dispatchedQueries[0]->query::class);
+        $this->assertSame($exception::class, $dispatchedQueries[0]->exception::class);
+        $this->assertSame($exception->getMessage(), $dispatchedQueries[0]->exception->getMessage());
+        $this->assertSame($exception->getCode(), $dispatchedQueries[0]->exception->getCode());
+        $this->assertSame($exception->getTrace(), $dispatchedQueries[0]->exception->getTrace());
     }
 }

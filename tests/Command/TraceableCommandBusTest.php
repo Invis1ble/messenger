@@ -26,14 +26,21 @@ class TraceableCommandBusTest extends BusTestCase
 
         try {
             $commandBus->dispatch($command);
-        } catch (\DomainException) {
+        } catch (\DomainException $e) {
             // do nothing
         }
+
+        $this->assertTrue(isset($e));
+        $this->assertSame($exception::class, $e::class);
+        $this->assertSame($exception->getMessage(), $e->getMessage());
 
         $dispatchedCommands = $commandBus->getDispatchedCommands();
         $this->assertCount(1, $dispatchedCommands);
         $this->assertArrayHasKey(0, $dispatchedCommands);
-        $this->assertSame($command, $dispatchedCommands[0]->command);
-        $this->assertSame($exception, $dispatchedCommands[0]->exception);
+        $this->assertSame($command::class, $dispatchedCommands[0]->command::class);
+        $this->assertSame($exception::class, $dispatchedCommands[0]->exception::class);
+        $this->assertSame($exception->getMessage(), $dispatchedCommands[0]->exception->getMessage());
+        $this->assertSame($exception->getCode(), $dispatchedCommands[0]->exception->getCode());
+        $this->assertSame($exception->getTrace(), $dispatchedCommands[0]->exception->getTrace());
     }
 }
