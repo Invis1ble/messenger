@@ -32,6 +32,7 @@ class TraceableQueryBus extends TraceableBus implements QueryBusInterface
             return $this->decoratedBus->ask($query);
         } catch (\Throwable $e) {
             $tracedQuery->setException($e);
+
             throw $e;
         }
     }
