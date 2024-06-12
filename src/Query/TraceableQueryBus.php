@@ -25,13 +25,9 @@ class TraceableQueryBus extends TraceableBus implements QueryBusInterface
         $callTime = new \DateTimeImmutable();
         $caller = $this->getCaller(QueryBusInterface::class, 'ask');
 
-        try {
-            return $this->decoratedBus->ask($query);
-        } catch (\Throwable $e) {
-            throw $e;
-        } finally {
-            $this->askedQueries[] = new TracedQuery($query, $caller, $callTime, $e ?? null);
-        }
+        $this->askedQueries[] = new TracedQuery($query, $caller, $callTime, $e ?? null);
+
+        return $this->decoratedBus->ask($query);
     }
 
     /**

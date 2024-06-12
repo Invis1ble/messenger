@@ -22,13 +22,8 @@ class TraceableEventBus extends TraceableBus implements EventBusInterface
         $callTime = new \DateTimeImmutable();
         $caller = $this->getCaller(EventBusInterface::class, 'dispatch');
 
-        try {
-            $this->decoratedBus->dispatch($event);
-        } catch (\Throwable $e) {
-            throw $e;
-        } finally {
-            $this->dispatchedEvents[] = new TracedEvent($event, $caller, $callTime, $e ?? null);
-        }
+        $this->dispatchedEvents[] = new TracedEvent($event, $caller, $callTime, $e ?? null);
+        $this->decoratedBus->dispatch($event);
     }
 
     /**

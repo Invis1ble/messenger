@@ -22,13 +22,8 @@ class TraceableCommandBus extends TraceableBus implements CommandBusInterface
         $callTime = new \DateTimeImmutable();
         $caller = $this->getCaller(CommandBusInterface::class, 'dispatch');
 
-        try {
-            $this->decoratedBus->dispatch($command);
-        } catch (\Throwable $e) {
-            throw $e;
-        } finally {
-            $this->dispatchedCommands[] = new TracedCommand($command, $caller, $callTime, $e ?? null);
-        }
+        $this->dispatchedCommands[] = new TracedCommand($command, $caller, $callTime, $e ?? null);
+        $this->decoratedBus->dispatch($command);
     }
 
     /**
