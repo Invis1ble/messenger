@@ -27,7 +27,7 @@ or just add it as a dependency in your `composer.json` file:
 
 {
     "require": {
-        "invis1ble/messenger": "^4.0"
+        "invis1ble/messenger": "^5.0"
     }
 }
 ```
