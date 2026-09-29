@@ -22,6 +22,9 @@ return (new Config())
             'spacing' => 'one',
         ], // overrides @Symfony defaults
         'single_line_throw' => false, // overrides @Symfony defaults
+        'new_with_parentheses' => [
+            'anonymous_class' => true,
+        ], // matches the Symfony PHP_CodeSniffer standard
         'trailing_comma_in_multiline' => [
             'after_heredoc' => true,
             'elements' => [
