@@ -64,7 +64,7 @@ composer install
 For an existing project, use the `composer require` command above to update both
 the manifest and its lock file.
 
-To upgrade an existing installation for Symfony 8 after the 5.1 release:
+To upgrade an existing installation for Symfony 8.1:
 
 ```sh
 composer require 'invis1ble/messenger:^5.1' 'symfony/messenger:^8.1' --with-all-dependencies
