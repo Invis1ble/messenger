@@ -19,7 +19,7 @@
         <exclude name="Symfony.Commenting.FunctionComment.MissingReturn" />
         <exclude name="Symfony.Commenting.License" />
         <exclude name="Symfony.Functions.Arguments.Invalid" />
-        <exclude name="Symfony.NamingConventions.ValidClassName.InvalidAbstractName" />
+        <exclude name="Generic.NamingConventions.AbstractClassNamePrefix.Missing" />
     </rule>
 
     <rule ref="Generic.PHP.RequireStrictTypes" />

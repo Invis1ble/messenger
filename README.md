@@ -12,6 +12,29 @@ Bus and Message Interfaces and Implementations.
 - Query & Query Bus
 - Event & Event Bus
 
+Compatibility
+-------------
+
+| Symfony Messenger | PHP | CI coverage |
+| --- | --- | --- |
+| `^6.4` | 8.2+ | PHP 8.2 / Messenger 6.4 |
+| `^7.0` | 8.2+ | PHP 8.2 / Messenger 7.0 and 7.4 |
+| `^8.0` | 8.4+ (8.4.1+ for Messenger 8.1) | PHP 8.4 / Messenger 8.0 and 8.1; PHP 8.5 / latest stable 8.x |
+
+Symfony Messenger 8.1.7 is the latest stable version verified for this update.
+For new Symfony 8 applications, use PHP 8.5 and the maintained Symfony 8.1 series.
+The Composer constraints continue to allow Symfony 6.4 and 7.x on PHP 8.2+.
+
+The public bus APIs are unchanged. Queries require exactly one synchronous handler
+and return its result, including `null` or `false`. Handler failures are unwrapped
+to the first original exception; middleware exceptions pass through unchanged.
+Middleware can add stamps to the underlying Symfony envelope as before.
+
+The library's message and handler interfaces are marker interfaces independent of
+Symfony's removed `MessageHandlerInterface`. Register handlers using Symfony's
+`#[AsMessageHandler]` attribute, explicit configuration, or a compatible integration
+bundle. Implementing a marker interface alone does not register a handler.
+
 Installation
 ------------
 
@@ -27,16 +50,28 @@ or just add it as a dependency in your `composer.json` file:
 
 {
     "require": {
-        "invis1ble/messenger": "^5.0"
+        "invis1ble/messenger": "^5.1"
     }
 }
 ```
 
-After adding the above line, run the following command to install the package:
+For a new project without `composer.lock`, install the dependencies:
 
 ```sh
 composer install
 ```
+
+For an existing project, use the `composer require` command above to update both
+the manifest and its lock file.
+
+To upgrade an existing installation for Symfony 8 after the 5.1 release:
+
+```sh
+composer require 'invis1ble/messenger:^5.1' 'symfony/messenger:^8.1' --with-all-dependencies
+```
+
+Run Composer on PHP 8.4.1 or later for Symfony 8.1. No platform requirement bypass
+is needed. Any integration bundle must also declare compatible dependency ranges.
 
 
 Development
@@ -49,6 +84,25 @@ Development
 3. Run `docker compose up -d --wait` to start the Docker containers
 4. Run `docker compose exec php composer install` to install dependencies
 5. Run `docker compose down --remove-orphans` to stop the Docker containers.
+
+The development image uses PHP 8.5. To check another supported PHP version, set
+`PHP_VERSION` consistently when building and running Docker Compose, for example:
+
+```sh
+PHP_VERSION=8.4 docker compose build
+PHP_VERSION=8.4 docker compose run --rm -T php composer install
+PHP_VERSION=8.4 docker compose run --rm -T php composer check
+```
+
+For a clean dependency resolution, use a fresh checkout without `vendor/` or
+`composer.lock`. CI resolves stable dependencies separately for every combination
+in the compatibility table and checks the actual PHP platform requirements.
+
+Run all package checks:
+
+```sh
+docker compose exec php composer check
+```
 
 ### Check for Coding Standards violations
 
